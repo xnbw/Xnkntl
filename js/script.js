@@ -1,143 +1,84 @@
-let nama, val;
-const url_string = document.URL;
-const url = new URL(url_string);
-let doi;
+<!doctype html>
+<html lang="en">
 
-if (url.searchParams.get('in') != null) {
-  doi = url.searchParams.get('in');
-} else {
-  doi = "HannSykes";
-}
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-let footer = document.getElementById("credit");
-footer.innerHTML = doi;
-footer.href = "https://www.instagram.com/muhmdilhan_/";
-
-function time() {
-  var d = new Date();
-  var n = d.getHours();
-  console.log(n);
-  if (n >= 5 && n <= 10) {
-    return "Pagi"
-  } else if (n >= 10 && n <= 15) {
-    return "Siang"
-  } else if (n >= 15 && n <= 18) {
-    return "Sore"
-  } else if (n >= 18 && n <= 24) {
-    return "Malam"
-  }
-}
-
-function makan() {
-  switch (time()) {
-    case "Pagi":
-      return "sarapan"
-      break;
-    case "Siang":
-      return "makan siang"
-      break;
-    case "Malam":
-      return "makan malam"
-      break;
-      case "Sore":
-      return "makan"
-      break;
-    default:
-      break;
-  }
-}
-
-function selesai() {
-  const teks = document.getElementById('teks');
-  const btn = document.querySelector('.tombol');
-  teks.innerHTML = `HannSykes Rest-Api <i
-  class="fas fa-heart text-danger animate__animated animate__heartBeat animate__repeat-3"></i>`;
-  btn.classList.add('d-none');
-  teks.classList.remove('d-none');  
-}
-
-
-document.querySelector(".tombol").addEventListener('click', function () {
-  Swal.fire({
-    title: 'Hello user!',
-    html: `Selamat ${time()}, How are you?`,
-    timer: 2500,
-    timerProgressBar: true,
-    showConfirmButton: false,
-  }).then((result) => {
-    if (result.dismiss === Swal.DismissReason.timer) {
-      Swal.fire('I hope you are fine').then((result) => {
-        Swal.fire({
-          title: ' ',
-          html: `This Rest-Api is still not perfect`,
-          timer: 2000,
-          timerProgressBar: true,
-          showConfirmButton: false,
-        }).then((result) => {
-          if (result.dismiss === Swal.DismissReason.timer) {
-            Swal.fire({
-              title: ' ',
-              html: `Use manual parameters, okay?`,
-              timer: 2000,
-              timerProgressBar: true,
-              showConfirmButton: false,
-            }).then((result) => {
-              if (result.dismiss === Swal.DismissReason.timer) {
-                Swal.fire('Hope you understand :)').then((result) => {
-                  Swal.fire(
-                    'Don't spam this Rest-Api!',
-                    '',
-                    'error'
-                  ).then((result) => {
-                    Swal.fire(
-                      'Don't shoot bro!',
-                      '',
-                      'error'
-                    ).then((result) => {
-                      Swal.fire('Thank you for being here :)').then((result) => {
-                        Swal.fire({
-                          title: 'QUESTION',
-                          text: 'Do you like this Rest-Api ?',
-                          showDenyButton: true,
-                          confirmButtonText: `Yes, I like it`,
-                          denyButtonText: `Sorry bro, no,
-                        }).then((result) => {
-                          /* Read more about isConfirmed, isDenied below */
-                          if (result.isConfirmed) {
-                            Swal.fire({
-                              title: 'The reason?',
-                              input: 'text',
-                              inputPlaceholder: 'ex: Seblacc, boba, or etc',
-                              showCancelButton: false,
-                              inputValidator: (value) => {
-                                if (!value) {
-                                  return 'Fill it up bro !'
-                                }
-                              }
-                            }).then((result) => {
-                              Swal.fire('Thanks You', 'Thanks bro for liking my project', 'success').then((result) => {
-                                Swal.fire("HannSykes Rest-Api").then((result) => {
-                                  selesai()
-                                });
-                              })
-                            })
-                          } else if (result.isDenied) {
-                            Swal.fire('Oh okedeh kalo ga ada').then((result) => {
-                              Swal.fire("See ya! Aku kangen ^^").then((result) => {
-                                selesai()
-                              });
-                            })
-                          }
-                        })
-                      })
-                    })
-                  })
-                })
-              }
-            })
-          }
-        })
-      })
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/sweetalert2@10.8.1/dist/sweetalert2.min.css'>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
     }
-  })
-});
+
+    .kotak {
+      margin-top: 250px;
+    }
+  </style>
+
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <title>Aku Sayang Kamu</title>
+
+
+
+</head>
+
+<body>
+
+  <div class="row">
+    <div class="col-lg text-center kotak">
+      <button type="button" class="btn btn-lg btn-primary tombol py-4 px-5 shadow">Click Here!</button>
+      <h1 id="teks" class="d-none animate__animated animate__pulse"></h1>
+    </div>
+  </div>
+
+  <form action="" method="get">
+    <input type="hidden" name="by">
+  </form>
+
+
+  <!-- Footer -->
+  <footer class="page-footer font-small blue fixed-bottom">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3 text-secondary"><small> Made with
+        <i class="fas fa-heart text-danger animate__animated animate__bounce animate__repeat-3 hati"></i> for
+        <a target="_blank" class="text-decoration-none text-danger" id="credit"></a></small>
+    </div>
+    <!-- Copyright -->
+
+  </footer>
+  <!-- Footer -->
+
+
+
+
+  <!-- Optional JavaScript; choose one of the two! -->
+  <script src="js/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script>
+  <script src="https://kit.fontawesome.com/61e5120832.js" crossorigin="anonymous"></script>
+
+  <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.8.1/dist/sweetalert2.all.min.js"></script>
+
+  <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>
